@@ -623,8 +623,24 @@
 
   // Start
   reshuffle();
+
+  // Re-layout after fonts load and on resize (prevents "rozjechanie" when metrics change).
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => {
+      reshuffle();
+    });
+  }
+
+  let resizeT = null;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeT);
+    resizeT = setTimeout(() => {
+      reshuffle();
+    }, 180);
+  });
   setTimeout(() => blastConfetti(30), 450);
 })();
+
 
 
 

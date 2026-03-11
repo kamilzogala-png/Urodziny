@@ -1,108 +1,105 @@
 ﻿<!doctype html>
-<html lang="en">
+<html lang="pl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>25 Today</title>
+    <title>Tomasz ma dziś 25</title>
     <meta
       name="description"
-      content="A playful 25th birthday mini-site: coffin timer, scattered 2001 nostalgia, and a tiny birthday bop."
+      content="Zabawna stronka na 25. urodziny Tomasza: Coffin timer z paskiem odliczania do północy, premiery z 2001 rozsypane po tle i muzyka."
     />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <canvas id="confetti" aria-hidden="true"></canvas>
 
+    <audio id="bgm" src="./assets/happy-birthday.mp3" autoplay loop></audio>
+
+    <div id="stickers" class="stickers" aria-hidden="false"></div>
+
     <header class="top">
       <div class="brand">
         <div class="badge">25</div>
         <div class="brand-text">
-          <div class="kicker">LEVEL UP</div>
-          <h1 class="title"><span id="name">Birthday Legend</span> is 25 today</h1>
-          <p class="sub">Welcome to the 2001 Museum: movies, games, and things that are also 25.</p>
+          <div class="kicker">NOWY POZIOM</div>
+          <h1 class="title"><span id="name">Tomasz</span> ma dziś 25</h1>
         </div>
       </div>
 
-      <div class="controls" role="group" aria-label="controls">
-        <button id="musicBtn" class="btn primary" type="button">Start birthday bop</button>
-        <button id="scatterBtn" class="btn" type="button">Scatter more</button>
-        <button id="clearBtn" class="btn ghost" type="button">Clean up</button>
+      <div class="controls" role="group" aria-label="sterowanie">
+        <button id="musicBtn" class="btn primary" type="button">Muzyka: włącz</button>
+        <button id="reshuffleBtn" class="btn" type="button">Rozsyp premiery</button>
+        <button id="clearConfettiBtn" class="btn ghost" type="button">Spokój</button>
       </div>
     </header>
 
     <main class="grid">
       <section class="panel coffin-panel" aria-label="coffin timer">
         <div class="panel-head">
-          <h2 class="panel-title">Coffin Timer</h2>
-          <div class="panel-note">Time left in birthday-day mode.</div>
+          <h2 class="panel-title">Coffin timer</h2>
         </div>
 
-        <div class="coffin-wrap">
-          <button id="coffin" class="coffin" type="button" aria-label="toggle coffin">
-            <span class="coffin-lid" aria-hidden="true"></span>
-            <span class="coffin-body" aria-hidden="true"></span>
-            <span class="coffin-glow" aria-hidden="true"></span>
-            <span class="coffin-inner">
-              <span class="coffin-kicker">CANDLES DIE IN</span>
-              <span id="countdown" class="countdown">--:--:--</span>
-              <span id="dateLine" class="dateLine"></span>
-            </span>
-          </button>
-        </div>
+        <div class="coffinSplit">
+          <div class="timerBlock">
+            <div class="countdownText mono" id="countdownText">--:--:--</div>
+            <div class="barWrap" aria-label="pasek odliczania">
+              <div class="bar">
+                <div id="barFill" class="bar-fill"></div>
+              </div>
+              <div class="coffinMarker" aria-hidden="true">⚰️</div>
+            </div>
+            <div class="tinyNote">Im bliżej północy, tym bliżej trumny.</div>
+          </div>
 
-        <div class="facts">
-          <div class="fact">
-            <div class="fact-k">Born (assumed)</div>
-            <div class="fact-v" id="dobLine">2001-03-11</div>
-          </div>
-          <div class="fact">
-            <div class="fact-k">Age in seconds</div>
-            <div class="fact-v mono" id="ageSeconds">...</div>
-          </div>
-          <div class="fact">
-            <div class="fact-k">Vibe</div>
-            <div class="fact-v">Elder zoomer. Vintage. Dangerous.</div>
+          <div class="splitDivider" aria-hidden="true"></div>
+
+          <div class="toastBlock" aria-label="toast">
+            <div class="toastTop">
+              <div class="toastTitle">Toast generator</div>
+              <div class="toastHint">Kliknij i masz tekst.</div>
+            </div>
+            <div class="toastBox compact">
+              <div id="toast" class="toast">Kliknij Generuj.</div>
+              <div class="toastActions">
+                <button id="toastBtn" class="btn primary" type="button">Generuj</button>
+                <button id="copyToastBtn" class="btn" type="button">Kopiuj</button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section class="panel museum" aria-label="2001 museum">
+      <section class="panel museum" aria-label="25 lat to">
         <div class="panel-head">
-          <h2 class="panel-title">2001 Museum (Scatter Zone)</h2>
-          <div class="panel-note">Click a card to pin it. Double click to yeet it.</div>
+          <h2 class="panel-title">25 lat to…</h2>
+          <div class="panel-note">Przybliżenia. Dla efektu wow.</div>
         </div>
 
-        <div class="legend" aria-label="legend">
-          <span class="pill movie">Movies</span>
-          <span class="pill game">Games</span>
-          <span class="pill thing">Things</span>
-        </div>
-
-        <div id="scatterZone" class="scatterZone" aria-label="scatter zone">
-          <div class="hint">Press <span class="kbd">Scatter more</span> a few times. Or just scroll and watch the chaos.</div>
-        </div>
-      </section>
-
-      <section class="panel guestbook" aria-label="toast">
-        <div class="panel-head">
-          <h2 class="panel-title">Write The Toast</h2>
-          <div class="panel-note">Generates a dramatic line worthy of a 2001 DVD menu.</div>
-        </div>
-
-        <div class="toastBox">
-          <div id="toast" class="toast">Click Generate.</div>
-          <div class="toastActions">
-            <button id="toastBtn" class="btn primary" type="button">Generate</button>
-            <button id="copyToastBtn" class="btn" type="button">Copy</button>
-          </div>
-          <div class="tiny">Tip: set a name via <span class="mono">?name=Kuba</span> and DOB via <span class="mono">?dob=2001-03-11</span>.</div>
-        </div>
+        <div id="equivalents" class="equivalents" aria-label="przeliczniki"></div>
       </section>
     </main>
 
+    <div id="modal" class="modal" aria-hidden="true">
+      <div class="modal-backdrop" data-close="true"></div>
+      <div class="modal-card" role="dialog" aria-modal="true" aria-label="szczegóły">
+        <button id="modalClose" class="modal-close" type="button" aria-label="zamknij">×</button>
+        <div id="modalTitle" class="modal-title">—</div>
+        <div id="modalBody" class="modal-body">—</div>
+      </div>
+    </div>
+
+    <div id="audioGate" class="audioGate" hidden>
+      <div class="audioGate-card" role="dialog" aria-modal="true" aria-label="muzyka zablokowana">
+        <button id="audioGateClose" class="modal-close" type="button" aria-label="zamknij">×</button>
+        <div class="audioGate-title">Muzyka została zablokowana przez przeglądarkę</div>
+        <div class="audioGate-body">Kliknij, aby ją włączyć.</div>
+        <button id="audioGateBtn" class="btn primary" type="button">Włącz muzykę</button>
+      </div>
+    </div>
+
     <footer class="footer">
-      <div class="footer-left">Built for March 11, 2026. Static site, perfect for free hosting.</div>
-      <div class="footer-right"><a class="link" href="./README.md">Deploy guide</a></div>
+      <div class="footer-left">Tomasz, 11 marca 2026. 25 lat.</div>
+      <div class="footer-right"><a class="link" href="./README.md">Hosting</a></div>
     </footer>
 
     <script src="./app.js"></script>

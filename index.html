@@ -1,0 +1,110 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>25 Today</title>
+    <meta
+      name="description"
+      content="A playful 25th birthday mini-site: coffin timer, scattered 2001 nostalgia, and a tiny birthday bop."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <canvas id="confetti" aria-hidden="true"></canvas>
+
+    <header class="top">
+      <div class="brand">
+        <div class="badge">25</div>
+        <div class="brand-text">
+          <div class="kicker">LEVEL UP</div>
+          <h1 class="title"><span id="name">Birthday Legend</span> is 25 today</h1>
+          <p class="sub">Welcome to the 2001 Museum: movies, games, and things that are also 25.</p>
+        </div>
+      </div>
+
+      <div class="controls" role="group" aria-label="controls">
+        <button id="musicBtn" class="btn primary" type="button">Start birthday bop</button>
+        <button id="scatterBtn" class="btn" type="button">Scatter more</button>
+        <button id="clearBtn" class="btn ghost" type="button">Clean up</button>
+      </div>
+    </header>
+
+    <main class="grid">
+      <section class="panel coffin-panel" aria-label="coffin timer">
+        <div class="panel-head">
+          <h2 class="panel-title">Coffin Timer</h2>
+          <div class="panel-note">Time left in birthday-day mode.</div>
+        </div>
+
+        <div class="coffin-wrap">
+          <button id="coffin" class="coffin" type="button" aria-label="toggle coffin">
+            <span class="coffin-lid" aria-hidden="true"></span>
+            <span class="coffin-body" aria-hidden="true"></span>
+            <span class="coffin-glow" aria-hidden="true"></span>
+            <span class="coffin-inner">
+              <span class="coffin-kicker">CANDLES DIE IN</span>
+              <span id="countdown" class="countdown">--:--:--</span>
+              <span id="dateLine" class="dateLine"></span>
+            </span>
+          </button>
+        </div>
+
+        <div class="facts">
+          <div class="fact">
+            <div class="fact-k">Born (assumed)</div>
+            <div class="fact-v" id="dobLine">2001-03-11</div>
+          </div>
+          <div class="fact">
+            <div class="fact-k">Age in seconds</div>
+            <div class="fact-v mono" id="ageSeconds">...</div>
+          </div>
+          <div class="fact">
+            <div class="fact-k">Vibe</div>
+            <div class="fact-v">Elder zoomer. Vintage. Dangerous.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel museum" aria-label="2001 museum">
+        <div class="panel-head">
+          <h2 class="panel-title">2001 Museum (Scatter Zone)</h2>
+          <div class="panel-note">Click a card to pin it. Double click to yeet it.</div>
+        </div>
+
+        <div class="legend" aria-label="legend">
+          <span class="pill movie">Movies</span>
+          <span class="pill game">Games</span>
+          <span class="pill thing">Things</span>
+        </div>
+
+        <div id="scatterZone" class="scatterZone" aria-label="scatter zone">
+          <div class="hint">Press <span class="kbd">Scatter more</span> a few times. Or just scroll and watch the chaos.</div>
+        </div>
+      </section>
+
+      <section class="panel guestbook" aria-label="toast">
+        <div class="panel-head">
+          <h2 class="panel-title">Write The Toast</h2>
+          <div class="panel-note">Generates a dramatic line worthy of a 2001 DVD menu.</div>
+        </div>
+
+        <div class="toastBox">
+          <div id="toast" class="toast">Click Generate.</div>
+          <div class="toastActions">
+            <button id="toastBtn" class="btn primary" type="button">Generate</button>
+            <button id="copyToastBtn" class="btn" type="button">Copy</button>
+          </div>
+          <div class="tiny">Tip: set a name via <span class="mono">?name=Kuba</span> and DOB via <span class="mono">?dob=2001-03-11</span>.</div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-left">Built for March 11, 2026. Static site, perfect for free hosting.</div>
+      <div class="footer-right"><a class="link" href="./README.md">Deploy guide</a></div>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

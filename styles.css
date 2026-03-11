@@ -20,7 +20,9 @@
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
+  min-height:100vh;
   height:100vh;
+  height:100dvh;
   display:flex;
   flex-direction:column;
   margin:0;
@@ -201,7 +203,7 @@ audio{display:none}
 
 .mono{font-variant-numeric: tabular-nums;}
 
-.equivalents{padding: 12px 16px 16px; display:grid; gap:10px; overflow:auto; min-height:0}
+.equivalents{padding: 12px 16px 16px; display:grid; gap:10px; overflow:auto; min-height:0 flex:1;}
 .eq{border:1px solid rgba(255,255,255,.14); border-radius: 18px; background: rgba(0,0,0,.16); padding: 12px 12px}
 .eq-top{display:flex; justify-content:space-between; gap:12px; align-items:baseline; flex-wrap:wrap}
 .eq-title{font-weight:900}
@@ -276,7 +278,9 @@ audio{display:none}
 .audioGate-body{margin-top:8px; color:var(--muted)}
 
 @media (max-width: 940px){
-  .grid{grid-template-columns: 1fr}
+  .grid{grid-template-columns: 1fr; grid-template-rows: minmax(0, 1fr) minmax(0, 1fr)}
+  .controls{width:100%}
+}
   .controls{width:100%}
 }
 
@@ -307,3 +311,16 @@ audio{display:none}
 .panel.museum{display:flex; flex-direction:column; min-height:0}
 
 
+
+@media (max-width: 520px){
+  .top{margin:10px auto 8px; padding:0 12px}
+  .grid{padding:0 12px 10px; gap:10px}
+  .badge{width:54px; height:54px; border-radius:16px; font-size:28px}
+  .title{font-size:clamp(26px, 7vw, 40px)}
+  .btn{padding:9px 12px; border-radius:12px}
+  .panel-head{padding:12px 12px 0}
+  .countdownText{font-size:30px}
+  .bar{min-width: 180px}
+  .toastBox.compact .toast{font-size:15px}
+  .footer{font-size:12px; padding:0 12px}
+}

@@ -44,7 +44,38 @@
         color: COLORS[(Math.random() * COLORS.length) | 0],
       });
     }
+
+  function blastConfettiAt(originX, originY, amount) {
+    for (let i = 0; i < amount; i++) {
+      confetti.push({
+        x: originX,
+        y: originY,
+        vx: rand(-3.6, 3.6),
+        vy: rand(-9.2, -3.2),
+        g: rand(0.12, 0.24),
+        w: rand(6, 12),
+        h: rand(6, 14),
+        r: rand(0, Math.PI),
+        vr: rand(-0.18, 0.18),
+        life: rand(70, 150),
+        color: COLORS[(Math.random() * COLORS.length) | 0],
+      });
+    }
   }
+
+  function confettiStorm(intensity) {
+    // Full-page-ish confetti: multiple bursts scattered across the viewport.
+    const bursts = intensity === "big" ? 16 : 10;
+    const perBurst = intensity === "big" ? 18 : 12;
+
+    for (let i = 0; i < bursts; i++) {
+      setTimeout(() => {
+        const x = window.innerWidth * rand(0.05, 0.95);
+        const y = window.innerHeight * rand(0.05, 0.45);
+        blastConfettiAt(x, y, perBurst);
+      }, i * 70);
+    }
+  }  }
 
   function tick() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -610,6 +641,7 @@
   audioGateClose.addEventListener("click", (e) => {
     e.stopPropagation();
     hideAudioGate();
+    confettiStorm("big");
   });
 
   // Próba autoplay
@@ -638,8 +670,10 @@
       reshuffle();
     }, 180);
   });
-  setTimeout(() => blastConfetti(30), 450);
+  setTimeout(() => confettiStorm("big"), 250);
 })();
+
+
 
 
 
